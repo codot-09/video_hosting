@@ -37,22 +37,15 @@ public class Content {
     @CreationTimestamp
     private LocalDateTime upload_at;
 
-    private int likes;
-
-    private int views;
-
-    private int shares;
-
-    private int saved;
-
-    private int downloads;
-
     private Long messageId;
 
     private boolean boosted;
 
     @OneToOne
     private File thumbnail;
+
+    @OneToOne
+    private File contentFile;
 
     @ElementCollection
     private List<String> tags;

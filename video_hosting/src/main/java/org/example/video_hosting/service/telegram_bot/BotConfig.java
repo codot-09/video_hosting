@@ -1,9 +1,18 @@
 package org.example.video_hosting.service.telegram_bot;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-@Component
-@RequiredArgsConstructor
+@Configuration
 public class BotConfig {
+
+    @Bean
+    public TelegramBotsApi telegramBotsApi(TelegramBot telegramBot) throws TelegramApiException {
+        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        botsApi.registerBot(telegramBot);
+        return botsApi;
+    }
 }

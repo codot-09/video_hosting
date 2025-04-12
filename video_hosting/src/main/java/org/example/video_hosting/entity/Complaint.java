@@ -3,6 +3,7 @@ package org.example.video_hosting.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.video_hosting.entity.enums.ComplaintType;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -24,9 +25,13 @@ public class Complaint {
     private ComplaintType type;
 
     @ManyToOne
+    private Content content;
+
+    @ManyToOne
     private User user;
 
     private boolean cancelled;
 
+    @CreationTimestamp
     private LocalDate date;
 }

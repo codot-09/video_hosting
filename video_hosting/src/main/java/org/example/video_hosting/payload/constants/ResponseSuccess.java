@@ -32,27 +32,31 @@ public class ResponseSuccess {
         return new ResponseSuccess(4, String.format("%s muvaffaqiyatli olindi.", data));
     }
 
+    public static ResponseSuccess uploaded(){
+        return new ResponseSuccess(5, "Kontent muvaffaqiyatli yuklandi.");
+    }
+
     public static ResponseSuccess login() {
-        return new ResponseSuccess(5, "Tizimga muvaffaqiyatli kirildi.");
+        return new ResponseSuccess(6, "Tizimga muvaffaqiyatli kirildi.");
     }
 
     public static ResponseSuccess logout() {
-        return new ResponseSuccess(6, "Tizimdan muvaffaqiyatli chiqildi.");
+        return new ResponseSuccess(7, "Tizimdan muvaffaqiyatli chiqildi.");
     }
 
     public static ResponseSuccess registered() {
-        return new ResponseSuccess(7, "Ro‘yxatdan muvaffaqiyatli o‘tildi.");
+        return new ResponseSuccess(8, "Ro‘yxatdan muvaffaqiyatli o‘tildi.");
     }
 
     public static ResponseSuccess passwordChanged() {
-        return new ResponseSuccess(8, "Parol muvaffaqiyatli o‘zgartirildi.");
+        return new ResponseSuccess(9, "Parol muvaffaqiyatli o‘zgartirildi.");
     }
 
     public static ResponseSuccess emailSent() {
-        return new ResponseSuccess(9, "Email muvaffaqiyatli yuborildi.");
+        return new ResponseSuccess(10, "Email muvaffaqiyatli yuborildi.");
     }
 
     public static ResponseSuccess operationDone(String message) {
-        return new ResponseSuccess(10, message);
+        return new ResponseSuccess(11, message);
     }
 }
