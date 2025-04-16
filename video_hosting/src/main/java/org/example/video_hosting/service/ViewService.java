@@ -24,7 +24,7 @@ public class ViewService {
     private final ViewRepository viewRepository;
     private final ContentRepository contentRepository;
 
-    public ApiResponse<?> viewContent(Long contentId,User user,boolean siLike){
+    public ApiResponse<?> viewContent(Long contentId,User user,boolean isLike){
         Optional<Content> content = contentRepository.findById(contentId);
         if(content.isEmpty()){
             return ApiResponse.error(ResponseError.notFound("Content"));
@@ -33,7 +33,7 @@ public class ViewService {
         View view = View.builder()
                 .contentId(content.get().getId())
                 .userId(user.getId())
-                .isLike(siLike)
+                .isLike(i)
                 .build();
 
         viewRepository.save(view);

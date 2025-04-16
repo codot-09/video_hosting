@@ -31,4 +31,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     long countByPremiumTrue();
 
     long countByBannedTrue();
+
+    List<View
 }

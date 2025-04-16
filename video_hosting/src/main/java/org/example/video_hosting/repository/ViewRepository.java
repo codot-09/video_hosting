@@ -40,4 +40,6 @@ public interface ViewRepository extends JpaRepository<View,Long> {
     Long findTopUploaderViewedByUserId(Long userId);
 
     List<View> findViewsOlderThan7Days();
+
+    List<View> findByUserId(Long userId);
 }

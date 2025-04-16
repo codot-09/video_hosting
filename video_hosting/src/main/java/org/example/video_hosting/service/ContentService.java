@@ -65,10 +65,6 @@ public class ContentService {
         return ApiResponse.ok(ResponseSuccess.uploaded(),contentFile.get().getId());
     }
 
-    public ApiResponse<?> getTopByUser(User user){
-        UserAnalytics userAnalytics = analyticService.getUserAnalytics(user.getId());
-    }
-
     public ResponseEntity<byte[]> downloadFile(Long fileId) {
         try {
             Optional<File> optionalFile = fileRepository.findById(fileId);

@@ -1,6 +1,7 @@
 package org.example.video_hosting.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.video_hosting.entity.User;
 import org.example.video_hosting.payload.ApiResponse;
 import org.example.video_hosting.payload.constants.ResponseSuccess;
 import org.example.video_hosting.payload.response.AnalyticResponse;
@@ -12,6 +13,7 @@ import org.example.video_hosting.repository.ViewRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,13 +24,13 @@ public class AnalyticService {
     private final UserRepository userRepository;
     private final ComplaintRepository complaintRepository;
 
-    public ApiResponse<?> getUserAnalytics(Long userId){
+    public UserAnalytics getUserAnalytics(Long userId){
         String mostViewed = viewRepository.findTopCategoryByUserId(userId);
         Integer peakViewHour = viewRepository.findPeakViewHourByUserId(userId);
         Long topUploader = viewRepository.findTopUploaderViewedByUserId(userId);
 
         LocalTime time = LocalTime.of(peakViewHour,0);
-        return ApiResponse.ok(ResponseSuccess.fetched("User analytics"),new UserAnalytics(mostViewed,time,topUploader));
+        return new UserAnalytics(mostViewed,time,topUploader);
     }
 
     public ApiResponse<?> getAllAnalytics(){
@@ -53,5 +55,17 @@ public class AnalyticService {
                 .build();
 
         return ApiResponse.ok(ResponseSuccess.fetched("Analizlar"),analyticResponse);
+    }
+
+    public ApiResponse<?> auditoryAnalytic(User user){
+        List<User> followers = userRepository.getFollowers(user.getId());
+        List<UserAnalytics> userAnalytics1 = new ArrayList<>;
+
+        for (User follower : followers) {
+            UserAnalytics userAnalytics = getUserAnalytics(follower.getId());
+            userAnalytics1.add(userAnalytics);
+        }
+
+
     }
 }

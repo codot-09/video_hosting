@@ -18,11 +18,4 @@ public class AnalyticController {
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(analyticService.getAllAnalytics());
     }
-
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getUserAnalytics(
-            @PathVariable Long userId
-    ){
-        return ResponseEntity.ok(analyticService.getUserAnalytics(userId));
-    }
 }
