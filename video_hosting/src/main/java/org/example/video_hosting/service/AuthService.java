@@ -52,7 +52,6 @@ public class AuthService {
 
         String token = jwtProvider.generateToken(user.get().getPhoneNumber());
 
-        return ApiResponse.ok(ResponseSuccess.login(),new LoginResponse(user.get().getId(),token));
+        return ApiResponse.ok(ResponseSuccess.login(),new LoginResponse(user.get().getId(),token,user.get().getRole()));
     }
-
 }
